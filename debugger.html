@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>STEP細胞</title>
+
+<link rel="stylesheet" href="../www/css/main.css" type="text/css">
+<link rel="stylesheet" href="../www/css/panel.css" type="text/css">
+
+<script src="../vtree2/js/d3.js"></script>
+<script src="../vtree2/js/vtree.js"></script>
+
+<script src="../yaseuma/js/helpers.js"></script>
+<script src="../yaseuma/js/lex.js"></script>
+<script src="../yaseuma/js/ast.js"></script>
+<script src="../yaseuma/js/exec.js"></script>
+<script src="../yaseuma/js/generate.js"></script>
+<script src="../yaseuma/js/parser/parser.js"></script>
+<script src="../yaseuma/js/parser/parser.statement.js"></script>
+<script src="../yaseuma/js/parser/parser.expression.js"></script>
+<script src="../yaseuma/js/parser/parser.primary.js"></script>
+<script src="../yaseuma/js/code-environment.js"></script>
+<script src="../yaseuma/js/assembler.js"></script>
+
+<script src="js/step-cells.js"></script>
+<script src="js/step-cells.exec.js"></script>
+<script src="js/vars.js"></script>
+<script src="js/panel-buttons.js"></script>
+<script src="js/panel-vars.js"></script>
+<script src="js/panel-console.js"></script>
+<script src="js/panel-asm.js"></script>
+<script src="js/panel-tree.js"></script>
+<script src="js/panel-call-tree.js"></script>
+<script src="js/step-test.js"></script>
+
+
+<script type="text/javascript">
+window.onload = function () {
+  stepTest();
+};
+</script>
+
+</head>
+
+<body>
+
+<div class="site">
+
+  <header>
+    <a href="/">HOME</a> &gt;
+    <h1 class="title">STEP細胞</h1>
+  </header>
+
+  <section>
+    <div>
+      <textarea id="src" name="src" rows="20" cols="80" style="width: 100%;">
+f = "opend file hankaku.c"
+
+print('#define X )*2+1\n')
+print('#define _ )*2\n')
+print('#define s ((((((((0\n')
+print('\n')
+print('char hankaku[4096] = {\n')
+
+i = 1
+for line in hankaku:
+    line = line.trim()
+
+    if startsWith(line, 'char'):
+        print('\n/* ' + line + ' */\n')
+    elif line.length == 8:
+        line = line.replace(new RegExp('\.', 'g'), '_'); line = line.replace(new RegExp('\*', 'g'), 'X')
+        print('s   ' + join(line, ' '))
+        if i != 4096:
+            print('   ,\n')
+        else:
+            print('\n')
+        i = i + 1
+
+print('};\n')
+print('\n')
+print('#undef X\n')
+print('#undef _\n')
+print('#undef s\n')
+
+f = "closed file hankaku.c"</textarea>
+    </div>
+
+    <p><input type="button" value="generate" onclick="loadSrc();" /></p>
+
+    <p id="message" style="color: #F00;"></p>
+
+    <div id="vars-table-container" style="display: inline-block;"></div>
+    <div id="console-container" style="display: inline-block;"></div>
+    <div id="tree-container"></div>
+    <div id="call-tree-container"></div>
+    <div id="buttons-container"></div>
+    <div id="asm-table-container"></div>
+  </section>
+
+  <footer>
+    <div class="contact">
+      <p><a href="/pm/postmail.html">メッセージを送る</a>　作成日:2015-05-25</p>
+    </div>
+  </footer>
+</div>
+
+</body>
+
+</html>
