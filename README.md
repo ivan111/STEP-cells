@@ -1,7 +1,7 @@
 STEP細胞
 ========
 
-> このソフトをただ淫乱なだけだった百合川さらさんに捧げます。
+> このソフトを重盛さと美さんに捧げます。
 
 簡単なサンプルコードをブラウザ上で動かせます。
 
@@ -14,8 +14,6 @@ STEP細胞は、イワン・イワノフをユニットリーダーとして研�
 STEP細胞はありまつ！
 
 
-
-[使用例](http://vanya.jp.net/pg/opp/)
 
 ![Screenshot](https://github.com/ivan111/STEP-cells/raw/master/thumbnail.png)
 
